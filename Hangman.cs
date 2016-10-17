@@ -4,45 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication1
+namespace Hangman
 {
-    class Function
-    {
-        public bool isCharInWord(char x, char[] wordInArray, char[] wordWithAnswersInArray)
-        {
-            for (int i = 0; i < wordInArray.Length; i++)
-            {
-                if (wordInArray[i] == x && wordWithAnswersInArray[i] != x)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public char[] addCharToArrayWithAnswers(char x, char[] wordInArray, char[] wordWithAnswersInArray)
-        {
-            for (int i = 0; i < wordInArray.Length; i++)
-            {
-                if (wordInArray[i] == x && wordWithAnswersInArray[i] != x)
-                {
-                    wordWithAnswersInArray[i] = x;
-                }
-            }
-            return wordWithAnswersInArray;
-        }
-        public string writeAnAnswer(char[] wordWithAnswersInArray)
-        {
-            string answer = new string(wordWithAnswersInArray);
-
-            return answer;
-        }
-        public string writeAnWord(char[] wordInArray)
-        {
-            string word = new string(wordInArray);
-            return word;
-        }
-
-    }
+   
     class Program
     {
         static void Main(string[] args)
@@ -56,7 +20,7 @@ namespace ConsoleApplication1
             {
                 wordWithAnswersInArray[i] = '-';
             }
-            Function fun = new Function();
+            Function1 fun = new Function1();
             Console.WriteLine("Hi 2nd man, Let's play in hangman.Try to write good char from a word You Can make 7 mistakes.");
             
             int l = 0;
@@ -72,6 +36,7 @@ namespace ConsoleApplication1
                 Console.WriteLine("Give an chararacter, please.");
                 char x = char.ToLower(Console.ReadKey().KeyChar);
                 Console.WriteLine(" ");
+                Console.Clear();
                 if (fun.isCharInWord(x, wordInArray, wordWithAnswersInArray) == false)
                 {
                     l++;
@@ -80,6 +45,7 @@ namespace ConsoleApplication1
                     {
                         Console.WriteLine("Sorry, but You lost.");
                         Console.ResetColor();
+                        Console.WriteLine("The word is: " + fun.writeAnWord(wordInArray));
                         break;
                     }
                     Console.WriteLine("Sorry, try again!");
